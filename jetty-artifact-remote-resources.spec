@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.0
-Release:        10.10%{?dist}
+Release:        10.11%{?dist}
 Summary:        Jetty toolchain artifact remote resources
 
 License:        ASL 2.0 or EPL
@@ -19,27 +19,27 @@ Source3:        http://www.eclipse.org/legal/epl-v10.html
 
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
 BuildRequires:  %{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-maven-remote-resources-plugin >= 1.2.1-3
-BuildRequires:  maven30-jetty-toolchain
+BuildRequires:  %{?scl_prefix}maven-remote-resources-plugin >= 1.2.1-3
+BuildRequires:  %{?scl_prefix}jetty-toolchain
 
 %description
 Jetty toolchain artifact remote resources
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 cp -p %{SOURCE2} %{SOURCE3} .
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -50,6 +50,9 @@ set -e -x
 %dir %{_javadir}/%{pkg_name}
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0-10.11
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.0-10.10
 - maven33 rebuild
 
