@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.0
-Release:        10.11%{?dist}
+Release:        10.12%{?dist}
 Summary:        Jetty toolchain artifact remote resources
 
 License:        ASL 2.0 or EPL
@@ -18,7 +18,7 @@ Source2:        http://www.apache.org/licenses/LICENSE-2.0.txt
 Source3:        http://www.eclipse.org/legal/epl-v10.html
 
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix}maven-remote-resources-plugin >= 1.2.1-3
 BuildRequires:  %{?scl_prefix}jetty-toolchain
 
@@ -50,6 +50,9 @@ set -e -x
 %dir %{_javadir}/%{pkg_name}
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.0-10.12
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0-10.11
 - maven33 rebuild #2
 
